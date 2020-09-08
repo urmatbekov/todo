@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./header";
 import List from "./list";
-import './style.css';
+import  './style.css';
 
 const App = () => {
     return (
@@ -10,7 +10,6 @@ const App = () => {
             <List/>
         </div>
     )
-
 }
 
 export default App;
