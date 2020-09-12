@@ -3,12 +3,17 @@ import React, {Component} from "react";
 class Item extends Component {
     render() {
 
-        const {changeChecked, checked,label, id} = this.props
+        const {changeChecked,deleteItem, checked, label, id} = this.props
         let className = '';
         if (checked) {
             className = 'checked'
         }
-        return <li onClick={changeChecked(id)} className={className}>{label}<span className='close'>x</span></li>
+        return (
+            <li className={className}>
+                <span onClick={changeChecked(id)}>{label}</span>
+                <span onClick={deleteItem(id)} className='close'>x</span>
+            </li>
+        )
     }
 }
 

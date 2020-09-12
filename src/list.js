@@ -23,6 +23,13 @@ class List extends Component {
         })
     }
 
+    deleteItem = (id) => () => {
+        this.setState(({data}) => {
+            const index = data.findIndex((item) => item.id === id)
+            return {data:[...data.slice(0,index),...data.slice(index+1)]}
+        })
+    }
+
     render() {
 
         return (
@@ -30,7 +37,7 @@ class List extends Component {
                 {
                     this.state.data.map(
                         (item) => {
-                            return <Item changeChecked={this.changeChecked} key={item.id} {...item}/>
+                            return <Item deleteItem={this.deleteItem} changeChecked={this.changeChecked} key={item.id} {...item}/>
                         }
                     )
                 }
