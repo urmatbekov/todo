@@ -1,24 +1,14 @@
 import React, {Component} from "react";
 
 class Item extends Component {
-
-    state = {
-        checked: true,
-    }
-    onClick = (e) => {
-        this.setState((state)=>{
-            return {
-                checked:!state.checked
-            }
-        })
-    }
-
     render() {
+
+        const {changeChecked, checked,label, id} = this.props
         let className = '';
-        if (this.state.checked) {
+        if (checked) {
             className = 'checked'
         }
-        return <li onClick={this.onClick} className={className}>{this.props.label}</li>
+        return <li onClick={changeChecked(id)} className={className}>{label}<span className='close'>x</span></li>
     }
 }
 

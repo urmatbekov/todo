@@ -5,13 +5,22 @@ class List extends Component {
 
     state = {
         data: [
-            {id: 1, checked: true, label: 'Hit the gym'},
-            {id: 2, checked: false, label: 'Pay bills'},
-            {id: 3, checked: true, label: 'Meet George'},
-            {id: 4, checked: true, label: 'Buy eggs'},
-            {id: 5, checked: false, label: 'Read a book'},
-            {id: 6, checked: true, label: 'Organize office'}
+            {id: 18789, checked: true, label: 'Hit the gym'},
+            {id: 4242, checked: false, label: 'Pay bills'},
+            {id: 31, checked: true, label: 'Meet George'},
+            {id: 23523, checked: true, label: 'Buy eggs'},
+            {id: 56, checked: false, label: 'Read a book'},
+            {id: 426, checked: true, label: 'Organize office'}
         ]
+    }
+
+    changeChecked = (id) => () => {
+        this.setState(({data}) => {
+            const index = data.findIndex((item) => item.id === id)
+            const item = {...data[index]}
+            item.checked = !item.checked
+            return {data:[...data.slice(0,index),item,...data.slice(index+1)]}
+        })
     }
 
     render() {
@@ -20,8 +29,8 @@ class List extends Component {
             <ul id="myUL">
                 {
                     this.state.data.map(
-                        ({id, label, checked}) => {
-                            return <Item key={id} label={label} checked={checked}/>
+                        (item) => {
+                            return <Item changeChecked={this.changeChecked} key={item.id} {...item}/>
                         }
                     )
                 }
